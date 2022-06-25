@@ -1,0 +1,59 @@
+@import functions
+
+// Colors
+$black: hsl(0, 0%, 4%) !default
+$black-sec: hsl(0, 0%, 8%) !default
+
+$gray-100: hsl(0, 0%, 10%) !default
+$gray-200: hsl(0, 0%, 20%) !default
+$gray-300: hsl(0, 0%, 30%) !default
+$gray-400: hsl(0, 0%, 40%) !default
+$gray-500: hsl(0, 0%, 50%) !default
+$gray-600: hsl(0, 0%, 60%) !default
+$gray-700: hsl(0, 0%, 70%) !default
+$gray-800: hsl(0, 0%, 80%) !default
+$gray-900: hsl(0, 0%, 90%) !default
+
+$white-sec: hsl(0, 0%, 94%) !default
+$white: hsl(0, 0%, 100%) !default
+
+// Blocks
+$block-spacing: 1.5rem !default
+
+// Typography
+$family-sans-serif: -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !default
+$family-monospace: monaco, "Consolas", "Lucida Console", monospace !default
+$render-mode: optimizeLegibility !default
+
+$size-1: 3rem !default
+$size-2: 2.5rem !default
+$size-3: 2.0rem !default
+$size-4: 1.5rem !default
+$size-5: 1.25rem !default
+$size-6: 1rem !default
+$size-7: 0.75rem !default
+
+$weight-light: 300 !default
+$weight-normal: 400 !default
+$weight-medium: 500 !default
+$weight-semibold: 600 !default
+$weight-bold: 700 !default
+
+$line-height: 1.5
+
+// Responsiveness
+$gap: 32px !default
+
+$tablet: 769px !default
+
+// 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+$desktop: 960px + (2 * $gap) !default
+
+$widescreen-enabled: true !default
+$widescreen: 1152px + (2 * $gap) !default
+
+$fullhd-enabled: true !default
+$fullhd: 1344px + (2 * $gap) !default
+
+$breakpoints: ('mobile': ('until': $tablet), 'tablet': ('from': $tablet), 'desktop': ('from': $desktop), 'widescreen': ('from': $fullhd), 'fullhd': ('from': $fullhd))
+
