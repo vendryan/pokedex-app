@@ -14,14 +14,15 @@ const filterVersion = (version) => (move) => {
  * I'm studying the JSON format to do this
  */
 const extractMove = (version) => (move) => {
-  const swordShieldDetail = move.version_group_details.find(group =>
+  const moveDetail = move.version_group_details.find(group =>
     group.version_group.name === version
   )
 
   return {
     move: move.name,
-    level: swordShieldDetail.level_learned_at,
-    method: swordShieldDetail.move_learn_method.name
+    level: moveDetail.level_learned_at,
+    method: moveDetail.move_learn_method.name,
+    version
   }
 }
 
@@ -36,7 +37,7 @@ const extractPokemonDataByName = async (name) => {
     name: capitalize(info.name),
     abilities: info.abilities,
     sprite_url: info.sprites.front_default,
-    moves: info.moves
+    moves: moveVersionName && info.moves
       .filter(filterVersion(moveVersionName))
       .map(extractMove(moveVersionName)),
     stats: info.stats.map(stat => {
@@ -52,13 +53,14 @@ const allPokemonName = async () => {
 }
 
 const usePokemonInfo = () => {
+  const [loading, setLoading] = useState(true)
   const [pokemonNames, setPokemonNames] = useState(null)
   const [pokemonInfos, setPokemonInfos] = useState(null)
   
   // Get all pokemon name
   useEffect(() => {
     const cachedPokemonInfos = window.localStorage.getItem('pokemonInfos')
-
+    console.log(cachedPokemonInfos)
     if (!cachedPokemonInfos) {
       allPokemonName()
         .then(result => setPokemonNames(result))
@@ -67,26 +69,28 @@ const usePokemonInfo = () => {
       const parsedJSON = JSON.parse(cachedPokemonInfos)
       setPokemonNames(parsedJSON.map(info => info.name))
       setPokemonInfos(parsedJSON)
+      setLoading(false)
     }
   }, [])
 
-  // Get all pokemon data and cache it to localStorage
+  // Get all pokemon data if not cached
   useEffect(() => {
     const cachedPokemonInfos = window.localStorage.getItem('pokemonInfos')
 
-    if (!cachedPokemonInfos) {
+    if (!cachedPokemonInfos && pokemonNames) {
       const main = async () => {
         const promiseArray = pokemonNames.map(extractPokemonDataByName)
         const pokemonInfos = await Promise.all(promiseArray)
         // console.log(pokemonInfos)
         window.localStorage.setItem('pokemonInfos', JSON.stringify(pokemonInfos))
         setPokemonInfos(pokemonInfos)
+        setLoading(false)
       }
       main()
     }
   }, [pokemonNames])
 
-  return { pokemonNames, pokemonInfos }
+  return { pokemonNames, pokemonInfos, loading }
 }
 
 export default usePokemonInfo

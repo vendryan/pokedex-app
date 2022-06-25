@@ -21,5 +21,6 @@ const getPokemonVersion = async () => {
 // eslint-disable-next-line
 export default {
   getAllPokemon,
-  getByPokemonName
+  getByPokemonName,
+  getPokemonVersion
 }
