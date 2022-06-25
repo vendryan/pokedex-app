@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+
 import { capitalize } from '../helper/string_helper'
 import { lastItem } from '../helper/list_helper'
 import pokeService from '../services/pokemon'
@@ -56,11 +57,11 @@ const usePokemonInfo = () => {
   const [loading, setLoading] = useState(true)
   const [pokemonNames, setPokemonNames] = useState(null)
   const [pokemonInfos, setPokemonInfos] = useState(null)
-  
+
   // Get all pokemon name
   useEffect(() => {
     const cachedPokemonInfos = window.localStorage.getItem('pokemonInfos')
-    console.log(cachedPokemonInfos)
+
     if (!cachedPokemonInfos) {
       allPokemonName()
         .then(result => setPokemonNames(result))
