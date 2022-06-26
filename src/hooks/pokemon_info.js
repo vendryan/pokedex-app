@@ -4,6 +4,9 @@ import { capitalize } from '../helper/string_helper'
 import { lastItem } from '../helper/list_helper'
 import pokeService from '../services/pokemon'
 
+// Variable to map pokemon name and ID to array index
+const mapper = {}
+
 const filterVersion = (version) => (move) => {
   return move.version_group_details.find(group => 
     group.version_group.name === version
@@ -20,7 +23,7 @@ const extractMove = (version) => (move) => {
   )
 
   return {
-    move: move.name,
+    move: move.move.name,
     level: moveDetail.level_learned_at,
     method: moveDetail.move_learn_method.name,
     version
@@ -70,6 +73,13 @@ const usePokemonInfo = () => {
       const parsedJSON = JSON.parse(cachedPokemonInfos)
       setPokemonNames(parsedJSON.map(info => info.name))
       setPokemonInfos(parsedJSON)
+
+      // Make the mapper
+      parsedJSON.forEach((info, index) => {
+        mapper[info.name.toLowerCase()] = index
+        mapper[info.id] = index
+      })
+
       setLoading(false)
     }
   }, [])
@@ -85,6 +95,12 @@ const usePokemonInfo = () => {
         // console.log(pokemonInfos)
         window.localStorage.setItem('pokemonInfos', JSON.stringify(pokemonInfos))
         setPokemonInfos(pokemonInfos)
+        
+        // Make the mapper
+        pokemonInfos.forEach((info, index) => {
+          mapper[info.name.toLowerCase()] = index
+          mapper[info.id] = index
+        })
         setLoading(false)
       }
       main()
@@ -94,4 +110,5 @@ const usePokemonInfo = () => {
   return { pokemonNames, pokemonInfos, loading }
 }
 
+export { mapper }
 export default usePokemonInfo
