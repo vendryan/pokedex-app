@@ -1,13 +1,9 @@
 import { Link } from 'react-router-dom'
 
 const pageLink = (page, num, maxPage) => {
-  const style = {
-    padding: 3
-  }
-
   return page + num <= 0 || page + num > maxPage
     ? null
-    : <Link style={style} to={`/pokemons/${page + num}`}>{page + num}</Link>
+    : <Link className='button' to={`/pokemons/${page + num}`}>{page + num}</Link>
 }
 
 const Paging = ({ page, maxPage }) => {
@@ -18,10 +14,10 @@ const Paging = ({ page, maxPage }) => {
       <div>
         {pageLink(page, -2, maxPage)}
         {pageLink(page, -1, maxPage)}
-        {pageLink(page, 0, maxPage)}
+        <Link className='button is-selected' to={`/pokemons/${page}`}>{page}</Link>
         {pageLink(page, 1, maxPage)}
         {pageLink(page, 2, maxPage, maxPage)}
-        ...
+        <span className='button'>...</span>
         {pageLink(maxPage, 0)}
       </div>
     )
@@ -30,10 +26,10 @@ const Paging = ({ page, maxPage }) => {
     return (
       <div>
         {pageLink(1, 0, maxPage)}
-        ...
+        <span className='button'>...</span>
         {pageLink(page, -2, maxPage)}
         {pageLink(page, -1, maxPage)}
-        {pageLink(page, 0, maxPage)}
+        <Link className='button is-selected' to={`/pokemons/${page}`}>{page}</Link>
         {pageLink(page, 1, maxPage)}
         {pageLink(page, 2, maxPage)}
       </div>
@@ -42,13 +38,13 @@ const Paging = ({ page, maxPage }) => {
   return (
     <div>
       {pageLink(1, 0, maxPage)}
-      ...
+      <span className='button'>...</span>
       {pageLink(page, -2, maxPage)}
       {pageLink(page, -1, maxPage)}
-      {pageLink(page, 0, maxPage)}
+      <Link className='button is-selected' to={`/pokemons/${page}`}>{page}</Link>
       {pageLink(page, 1, maxPage)}
       {pageLink(page, 2, maxPage)}
-      ...
+      <span className='button'>...</span>
       {pageLink(maxPage, 0, maxPage)}
     </div>
   )

@@ -1,0 +1,82 @@
+@import utilities/initial-variables
+@import utilities/derived-variables
+  
+$body-background-color: $white !default
+$body-rendering: optimizeLigibility !default
+$body-overflow-x: hidden !default
+$body-overflow-y: scroll !default
+$body-size: 16px !default
+
+$body-font-family: $family-sans-serif !default
+$body-font-size: 1em !default
+$body-color: $text !default
+
+$h1-size: $size-1 !default
+$h2-size: $size-2 !default
+$h3-size: $size-3 !default
+$h4-size: $size-4 !default
+$h5-size: $size-5 !default
+$h6-size: $size-6 !default
+
+$link-color: $blue
+$link-hover-color: $gray-100
+
+html
+  background-color: $body-background-color
+  text-rendering: $body-rendering
+  overflow-x: $body-overflow-x
+  overflow-y: $body-overflow-y
+  font-size: $body-size
+  -moz-osx-text-smoothing: grayscale
+  -webkit-text-smoothing: antialiased
+  text-size-adjust: 100%
+
+section,
+article,
+aside,
+header,
+main,
+footer,
+figure,
+hgroup
+  display: block
+
+// Font families and stuff
+body
+  font-family: $body-font-family
+  font-size: $body-font-size
+  line-height: 1.5
+  color: $text
+
+h1
+  font-size: $h1-size
+h2
+  font-size: $h2-size
+h3
+  font-size: $h3-size
+h4
+  font-size: $h4-size
+h5
+  font-size: $h5-size
+h6
+  font-size: $h6-size
+
+// Inline
+a
+  color: $link-color
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    color: $link-hover-color
+
+strong
+  color: $text-strong
+
+// Block
+table
+  th,
+  td
+    vertical-align: top 
+  th
+    color: $text-strong
+

@@ -28,3 +28,26 @@
       @return $number * expt($number, $power - 1)
   @else 
     @return expt(divide(1, $number), $power)
+
+@function colorLuminance($color)
+  @if type-of($color) != 'color'
+    @return 0.55
+  $red: red($color)
+  $green: green($color)
+  $blue: blue($color)
+  $color-rgb: ('red': $red, 'green': $green, 'blue': $blue)
+  @each $name, $value in $color-rgb
+    $value: divide($value, 255)
+    @if $value <= 0.04045
+      $value: divide($value, 12.92)
+    @else 
+      // Actually raised ny 2.4 but don't know how to do that
+      $value: expt(divide($value + 0.055, 1.055), 2)
+    $color-rgb: map-merge($color-rgb, ($name: $value))
+  @return map-get($color-rgb, 'red') * 0.2126 + map-get($color-rgb, 'green') * 0.7152 + map-get($color-rgb, 'blue') * 0.0722
+
+@function invertColor($color)
+  @if colorLuminance($color) > 0.55
+    @return rgba(#000, 0.7)
+  @else 
+    @return #fff

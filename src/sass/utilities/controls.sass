@@ -1,0 +1,29 @@
+@import derived-variables
+
+$control-border-width: 1px !default
+$control-padding-vertical: calc(0.5em - #{$control-border-width}) !default
+// Paddingnya termasuk ke border width juga karena box-sizing: border-box
+$control-padding-horizontal: calc(0.75em - #{$control-border-width}) !default
+
+=control
+  -moz-appearance: none
+  -webkit-appearance: none
+  appearance: none
+  display: inline-flex
+  align-items: center
+  border: $control-border-width solid transparent
+  font-size: $size-normal
+  box-shadow: none
+  line-height: 1.5
+  height: 2.5em
+  justify-content: flex-start
+  padding: $control-padding-vertical $control-padding-horizontal
+  position: relative
+  vertical-align: top
+  // States
+  &:focus,
+  &:active
+    outline: none
+  &[disabled]
+    cursor: not-allowed
+

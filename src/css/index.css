@@ -1,3 +1,58 @@
+.container {
+  margin: 0 auto;
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media screen and (min-width: 1216px) {
+  .container {
+    max-width: 1152px;
+  }
+}
+@media screen and (min-width: 1408px) {
+  .container {
+    max-width: 1344px;
+  }
+}
+
+.button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  box-shadow: none;
+  line-height: 1.5;
+  height: 2.5em;
+  justify-content: flex-start;
+  padding: calc(0.5em - 1px) calc(0.75em - 1px);
+  position: relative;
+  vertical-align: top;
+}
+.button:focus, .button:active {
+  outline: none;
+}
+[disabled].button {
+  cursor: not-allowed;
+}
+
+.button {
+  background-color: hsl(0deg, 0%, 100%);
+  color: hsl(0deg, 0%, 10%);
+  padding: calc(0.5em - 1px) 1em;
+  border-width: 1px;
+  border-color: hsl(0deg, 0%, 40%);
+  border-radius: 4px;
+}
+.button.is-selected {
+  color: #fff;
+  background-color: hsl(229deg, 53%, 53%);
+}
+
 html,
 body,
 p,
@@ -77,6 +132,80 @@ table {
 th,
 td {
   padding: 0;
+}
+
+html {
+  background-color: hsl(0deg, 0%, 100%);
+  text-rendering: optimizeLigibility;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-size: 16px;
+  -moz-osx-text-smoothing: grayscale;
+  -webkit-text-smoothing: antialiased;
+  text-size-adjust: 100%;
+}
+
+section,
+article,
+aside,
+header,
+main,
+footer,
+figure,
+hgroup {
+  display: block;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 1em;
+  line-height: 1.5;
+  color: hsl(0deg, 0%, 10%);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+a {
+  color: hsl(229deg, 53%, 53%);
+  cursor: pointer;
+  text-decoration: none;
+}
+a:hover {
+  color: hsl(0deg, 0%, 10%);
+}
+
+strong {
+  color: hsl(0deg, 0%, 4%);
+}
+
+table th,
+table td {
+  vertical-align: top;
+}
+table th {
+  color: hsl(0deg, 0%, 4%);
 }
 
 /*# sourceMappingURL=index.css.map */

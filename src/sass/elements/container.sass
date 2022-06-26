@@ -1,0 +1,17 @@
+@import ../utilities/initial-variables
+@import ../utilities/derived-variables
+
+$container-offset: ($gap * 2) !default
+$container-max-width: $fullhd !default
+
+.container
+  margin: 0 auto
+  // background-color: $container-background
+  // color: $container-color
+  +desktop
+    max-width: min($desktop, $container-max-width) - $container-offset
+  +widescreen
+    max-width: min($widescreen, $container-max-width) - $container-offset
+  +fullhd
+    max-width: min($fullhd, $container-max-width) - $container-offset
+    

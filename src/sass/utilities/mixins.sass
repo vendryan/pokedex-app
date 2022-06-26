@@ -1,3 +1,6 @@
+@import initial-variables
+@import derived-variables
+  
 =no-appearance
   -moz-appearance: none
   -webkit-appearance: none
@@ -8,3 +11,18 @@
   -webkit-user-select: none
   -ms-user-select: none
   user-select: none
+
+// Responsiveness
+=desktop
+  @media screen and (min-width: $desktop)
+    @content
+
+=widescreen
+  @if $widescreen-enabled
+    @media screen and (min-width: $widescreen)
+      @content
+
+=fullhd
+  @if $fullhd-enabled
+    @media screen and (min-width: $fullhd)
+      @content

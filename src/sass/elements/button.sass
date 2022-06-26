@@ -1,0 +1,22 @@
+@import ../utilities/derived-variables
+@import ../utilities/mixins
+@import ../utilities/extends
+
+$button-border-width: 1px !default
+$button-border-color: $gray-400 !default
+$button-border-radius: 4px !default
+
+$button-padding-horizontal: 1em !default
+$button-padding-vertical: calc(0.5em - #{$button-border-width}) !default
+
+.button
+  @extend %control
+  background-color: $white
+  color: $text
+  padding: $button-padding-vertical $button-padding-horizontal
+  border-width: $button-border-width
+  border-color: $button-border-color
+  border-radius: $button-border-radius
+  &.is-selected
+    color: invertColor($blue)
+    background-color: $blue
